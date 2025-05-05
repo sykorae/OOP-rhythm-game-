@@ -53,6 +53,8 @@ class GameScene(Scene):
     def keydown(self, event):
         return super().keydown(event)
         
+
+    def something():
             
     
 
