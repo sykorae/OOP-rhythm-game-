@@ -14,17 +14,6 @@ class GameScene(Scene):
         self.last_spawn = pg.time.get_ticks()
         self.spawn_interval =  beat_interval_ms
         self.speed = fall_speed
-
-        #buttons
-        self.lane_width = column_width  
-        self.hit_y = hit_line_y  
-        self.keys = [pg.K_d, pg.K_f, pg.K_j, pg.K_k]  
-        self.buttons = []
-
-        for i in range(4):
-            x = i * self.lane_width  
-            btn = Button(x, self.hit_y, button_w, button_h, self.keys[i])  
-            self.buttons.append(btn)
         
     def update(self):
         current_time = pg.time.get_ticks()
@@ -50,8 +39,7 @@ class GameScene(Scene):
         pg.mixer.music.load(file_path)
         pg.mixer.music.play()
     
-    def keydown(self, event):
-        return super().keydown(event)
+
         
 
    
