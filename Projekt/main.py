@@ -32,13 +32,14 @@ async def main():
 
             elif event.type == SCENEEVENT:
                 print(f"Switching scene to: {event.scene_type}")
+
                 if event.scene_type == 'game':
                     scene = GameScene(screen)
-                    
                     asyncio.run_coroutine_threadsafe(GameScene.play_music(1, 'Projekt/assets/music/test.mp3'), loop)
 
                 elif event.scene_type == 'opts':
                     pass  
+                
             elif event.type in scene.process:
                 scene.process[event.type](event)
             

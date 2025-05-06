@@ -14,7 +14,7 @@ class GameScene(Scene):
         self.spawn_interval =  beat_interval_ms
         self.speed = fall_speed
         
-    def update(self):
+    def update(self): 
         current_time = pg.time.get_ticks()
         if current_time - self.last_spawn >= self.spawn_interval:
             self.notes.append(Note())
@@ -31,7 +31,7 @@ class GameScene(Scene):
             note.draw_note(self.screen)
         pg.display.flip()
     
-    async def play_music(delay, file_path, loop=False):
+    async def play_music(delay, file_path, loop=False): #spusti hudbu s delayem
         print(f"Waiting for {delay} seconds before starting music...")
         await asyncio.sleep(delay)
         print("playing")
