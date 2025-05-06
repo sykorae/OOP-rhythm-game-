@@ -19,7 +19,10 @@ async def main():
         'game': GameScene(screen),
     }
 
-    scene = MenuScene(screen)
+    scene: Scene = scenes['menu']
+    scene.start()
+    scene.draw()
+
     running = True
     loop = asyncio.get_event_loop()
     while running:
@@ -32,10 +35,10 @@ async def main():
                 if event.scene_type == 'game':
                     scene = GameScene(screen)
                     
-                    asyncio.run_coroutine_threadsafe(GameScene.play_music(1, 'assets/music/test.mp3'), loop)
+                    asyncio.run_coroutine_threadsafe(GameScene.play_music(1, 'Projekt/assets/music/test.mp3'), loop)
 
                 elif event.scene_type == 'opts':
-                    pass  # or OptionsScene(screen) if it exists
+                    pass  
             elif event.type in scene.process:
                 scene.process[event.type](event)
             

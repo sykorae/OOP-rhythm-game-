@@ -2,7 +2,6 @@ import pygame as pg, asyncio
 from pygame.event import Event
 from scene import Scene
 from note import Note
-from button import Button
 from config import *
 
 class GameScene(Scene):

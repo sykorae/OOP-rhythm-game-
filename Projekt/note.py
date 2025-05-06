@@ -13,7 +13,7 @@ class Note:
         self.pos = Vector2(self.x, self.y)
     
     def draw_note(self, screen):
-        pg.draw.rect(screen, (50, 150, 255), (self.pos.x, self.pos.y, square_size, square_size))
+        pg.draw.rect(screen, note_color, (self.pos.x, self.pos.y, square_size, square_size))
 
     def move(self):
         self.pos += fall_speed
