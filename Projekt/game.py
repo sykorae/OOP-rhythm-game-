@@ -14,7 +14,7 @@ class GameScene(Scene):
         self.spawn_interval =  beat_interval_ms
         self.speed = fall_speed
         
-    def update(self): 
+    def update_notes(self): 
         current_time = pg.time.get_ticks()
         if current_time - self.last_spawn >= self.spawn_interval:
             self.notes.append(Note())

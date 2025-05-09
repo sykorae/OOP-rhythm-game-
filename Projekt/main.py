@@ -39,11 +39,11 @@ async def main():
 
                 elif event.scene_type == 'opts':
                     pass  
-                
+
             elif event.type in scene.process:
                 scene.process[event.type](event)
             
-        scene.update()
+        scene.update_notes()
         scene.draw()
         pg.display.flip()
         clock.tick(FPS)
