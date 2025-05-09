@@ -43,7 +43,7 @@ async def main():
             elif event.type in scene.process:
                 scene.process[event.type](event)
             
-        scene.update_notes()
+        scene.update()
         scene.draw()
         pg.display.flip()
         clock.tick(FPS)
