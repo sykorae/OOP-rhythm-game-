@@ -9,7 +9,7 @@ class MenuScene(Scene):
         super().__init__(screen)
         self.options: list[str] = ['Play', 'Options', 'Quit']
         self.selection: int = 0
-        self._font = pg.font.Font('Projekt/assets/Freedom-10eM.ttf', MENU_FONTSIZE)
+        self._font = pg.font.Font('Projekt/ARCADE_N.TTF', MENU_FONTSIZE)
 
         # Rendered versions of menu options
         self.s_opts = [
