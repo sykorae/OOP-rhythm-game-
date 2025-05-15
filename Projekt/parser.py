@@ -33,6 +33,7 @@ def get_notes_data(text):
 
     steps = []
     for section in notes_sections:
+        print(lines)
         lines = section.strip().split("\n") # separates text from each line
         print(lines)
         data_lines = [line.strip() for line in lines if line.strip() and not line.strip().endswith(":")] 
@@ -71,3 +72,12 @@ print("Title:", parsed["title"])
 print("Offset:", parsed["offset"])
 print("BPMs:", parsed["bpms"])
 print("Note lines:", parsed["notes"])
+
+txt = "0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111\n0000\n1111\n0000\n1111"
+bars = [bar.split('\n') for bar in txt.split(',\n')]
+print(bars)
+for bar in bars:
+    for i, beat in enumerate(bar):
+        print(f"{i+1}/{len(bar)}:{beat}")  
+
+
