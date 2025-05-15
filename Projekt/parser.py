@@ -17,7 +17,7 @@ def get_bpm_data(text):
     bpm_dict = {}
     for pair in bpm_pairs:
         try:
-            beat, bpm = pair.strip().split("=") #separates beat and bpm and stores them
+            beat, bpm = pair.strip().split("=") # separates beat and bpm and stores them
             bpm_dict[float(beat)] = float(bpm) # adds to dictionary
         except ValueError:
             print(f"Malformed BPM entry: {pair}")
@@ -25,21 +25,15 @@ def get_bpm_data(text):
     
 
 def get_notes_data(text):
-    notes_sections = re.findall(r"#NOTES:(.*?);", text, re.IGNORECASE | re.DOTALL) # returns all text after #NOTES: 
+    notes_sections = re.findall(r"#NOTES:(.*?);", text, re.IGNORECASE | re.DOTALL)[0]\
+        .split(":")[-1].replace("M","0").replace("2","1").replace("3","1")[1:] #string magic 
+    
     if not notes_sections:
         print("No NOTES section found.")
         return []
-
-    steps = []
-    for section in notes_sections:
-        print(lines)
-        lines = section.strip().split("\n") # separates text from each line
-        data_lines = [line.strip() for line in lines if line.strip() and not line.strip().endswith(":")]  # discards empty strings, strips spaces and discarld lines ending with :
-        for line in data_lines:
-            if all(c in "0123M," for c in line):  # only 0123M are valid symbols (excludes lines with ",")
-                steps.append(line)
-    return steps
     
+    bars = [bar.split('\n')[0:-1] for bar in notes_sections.split(',\n')]
+    return bars       
 
 def parse_sm_file(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -54,28 +48,19 @@ def parse_sm_file(path):
         offset = 0.0
 
     bpms = get_bpm_data(content)
-    note_data = get_notes_data(content)
+    bars = get_notes_data(content)
 
     return {
         "title": title,
         "offset": offset,
         "bpms": bpms,
-        "notes": note_data,
+        "bars": bars,
     }
 
-# TEST OUTPUT
+
 parsed = parse_sm_file("Projekt/FireStarter.sm")
 
-print("Title:", parsed["title"])
-print("Offset:", parsed["offset"])
-print("BPMs:", parsed["bpms"])
-print("Note lines:", parsed["notes"])
 
-txt = "0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111,\n0000\n1111\n0000\n1111\n0000\n1111\n0000\n1111"
-bars = [bar.split('\n') for bar in txt.split(',\n')]
-print(bars)
-for bar in bars:
-    for i, beat in enumerate(bar):
-        print(f"{i+1}/{len(bar)}:{beat}")  
+
 
 
