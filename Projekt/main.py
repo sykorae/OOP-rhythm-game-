@@ -40,12 +40,9 @@ def main():
             elif event.type in scene.process:
                 scene.process[event.type](event)
             
-        
         scene.draw()
         pg.display.flip()
         clock.tick(FPS)
-
-       
 
     pg.quit()
 

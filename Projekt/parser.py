@@ -26,7 +26,6 @@ def get_bpm_data(text):
 
 def get_notes_data(text):
     notes_sections = re.findall(r"#NOTES:(.*?);", text, re.IGNORECASE | re.DOTALL) # returns all text after #NOTES: 
-    print(notes_sections)
     if not notes_sections:
         print("No NOTES section found.")
         return []
@@ -34,13 +33,12 @@ def get_notes_data(text):
     steps = []
     for section in notes_sections:
         lines = section.strip().split("\n") # separates text from each line
-        print(lines)
-        data_lines = [line.strip() for line in lines if line.strip() and not line.strip().endswith(":")] 
-        print(data_lines)
+        data_lines = [line.strip() for line in lines if line.strip() and not line.strip().endswith(":")]  # discards empty strings, strips spaces and discarld lines ending with :
         for line in data_lines:
-            if all(c in "0123M" for c in line):  # valid note line
+            if all(c in "0123M," for c in line):  # only 0123M are valid symbols (excludes lines with ",")
                 steps.append(line)
     return steps
+    
 
 def parse_sm_file(path):
     with open(path, "r", encoding="utf-8") as f:

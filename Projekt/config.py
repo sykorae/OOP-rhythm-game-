@@ -13,8 +13,6 @@ square_size = 50
 column_width = SCREEN_W // num_columns
 hit_line_y = SCREEN_H - 100 #vyska zasahu
 fall_speed = Vector2(0,15)
-BPM = 130.5
-beat_interval_ms = 60000 / BPM
 note_color = (50, 150, 255)
 
 #Button

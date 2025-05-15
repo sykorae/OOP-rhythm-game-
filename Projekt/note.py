@@ -1,13 +1,14 @@
 import pygame as pg
 from config import *
 from pygame.math import Vector2
-import random
+import parser
 
 
 class Note:
-    pass
-    
 
+    def __init__(self):
+        pass
+    
         
 
     
