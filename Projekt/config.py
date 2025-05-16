@@ -8,16 +8,7 @@ SCREEN_W , SCREEN_H= 600, 800
 FPS = 60
 
 #Note
-num_columns = 4
-square_size = 50
-column_width = SCREEN_W // num_columns
-hit_line_y = SCREEN_H - 100 #vyska zasahu
-fall_speed = Vector2(0,15)
-note_color = (50, 150, 255)
-
-#Button
-button_w = 100
-button_h = 20
+FALL_SPEED = 300
 
 #Window name
 CAPTION = "osu!mania clone"

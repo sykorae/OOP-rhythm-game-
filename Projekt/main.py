@@ -9,7 +9,7 @@ def main():
     pg.mixer.init()
     pg.init()
     clock = pg.time.Clock()
-    screen = pg.display.set_mode((SCREEN_W, SCREEN_H)) 
+    screen: pg.Surface = pg.display.set_mode((SCREEN_W, SCREEN_H)) 
     pg.display.set_caption(CAPTION)
 
     scenes: dict[SceneType, Scene] = {
@@ -33,6 +33,7 @@ def main():
 
                 if event.scene_type == 'game':
                     scene = GameScene(screen)
+                    scene.start()
 
                 elif event.scene_type == 'opts':
                     pass  
@@ -40,7 +41,7 @@ def main():
             elif event.type in scene.process:
                 scene.process[event.type](event)
             
-        scene.draw()
+        scene._draw()
         pg.display.flip()
         clock.tick(FPS)
 
