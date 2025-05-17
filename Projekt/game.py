@@ -7,7 +7,7 @@ from note import *
 from note_loader import create_notes
 
 DRAW_TIME_OFFSET = 10
-HIT_TIME_OFFSET = 1
+HIT_TIME_OFFSET = 0.1
 
 # Takhle nejak jsme se o te logice bavili. Neni tady to zabijeni not, ale struktura snad souhlasi.
 # Nemusite to nutne cele takto pouzit, jen jsem si to takto predstavil ja.
@@ -26,6 +26,8 @@ class GameScene(Scene):
 
     def start(self) -> None:
         self.start_time = time.time() # to se musi synchronizovat nejak se zacatkem te hudby
+        pg.mixer.music.load("Projekt/FireStarter.ogg")
+        pg.mixer.music.play()
         self.notes = create_notes("Projekt/FireStarter.sm")
     
     def keydown(self, event) -> None:
@@ -33,12 +35,23 @@ class GameScene(Scene):
         for note in self.notes:
             if note.get_dt(current_time) > HIT_TIME_OFFSET:
                 break
-            if isinstance(note, mapping[event.key]):
-                note.hit(current_time)
+            try: 
+                if isinstance(note, mapping[event.key]):
+                    note.hit(current_time)
+
+            except:
+                pass
+
+                
               
     def _draw(self):
         self.screen.fill(C['bg'])
         now = self.now()
+        for i in range(4):  # assuming 4 lanes
+            x = i * (LANE_WIDTH + LANE_GAP) + 100  # starting X offset (adjust to your layout)
+            
+            pg.draw.rect(self.screen, (80, 80, 80), (x, LANE_Y, LANE_WIDTH, 50))
+
         for note in self.notes:
             if note.get_dt(now) > DRAW_TIME_OFFSET:
                 break

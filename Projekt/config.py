@@ -8,9 +8,16 @@ SCREEN_W , SCREEN_H= 600, 800
 FPS = 60
 
 #Note
-FALL_SPEED = 300
+FALL_SPEED = 500
+HIT_LINE_Y = SCREEN_H - 300
 
-#Window name
+#Hot zone
+LANE_WIDTH = 64
+LANE_HEIGHT = 20
+LANE_Y = HIT_LINE_Y
+LANE_GAP = 30
+
+#Window nae
 CAPTION = "osu!mania clone"
 
 #Menu font-size

@@ -58,7 +58,7 @@ def parse_sm_file(path):
     }
 
 
-parsed = parse_sm_file("Projekt/FireStarter.sm")
+
 
 
 
