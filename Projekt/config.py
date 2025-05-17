@@ -9,7 +9,7 @@ FPS = 60
 
 #Note
 FALL_SPEED = 500
-HIT_LINE_Y = SCREEN_H - 300
+HIT_LINE_Y = SCREEN_H - 150
 
 #Hot zone
 LANE_WIDTH = 64
