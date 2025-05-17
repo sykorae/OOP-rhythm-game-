@@ -38,12 +38,9 @@ class GameScene(Scene):
             try: 
                 if isinstance(note, mapping[event.key]):
                     note.hit(current_time)
-
             except:
                 pass
-
-                
-              
+  
     def _draw(self):
         self.screen.fill(C['bg'])
         now = self.now()
