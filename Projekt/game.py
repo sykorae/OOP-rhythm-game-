@@ -19,6 +19,7 @@ class GameScene(Scene):
         super().__init__(screen)
         self.notes = []
         self.start_time = 0
+        self.active_lanes = [False, False, False, False]
 
     def now(self) -> float:
         """Helper metod to get current time with respect to song."""
@@ -40,14 +41,34 @@ class GameScene(Scene):
                     note.hit(current_time)
             except:
                 pass
+        
+            if event.key == pg.K_g:
+                self.active_lanes[0] = True
+            elif event.key == pg.K_h:
+                self.active_lanes[1] = True
+            elif event.key == pg.K_k:
+                self.active_lanes[2] = True
+            elif event.key == pg.K_l:
+                self.active_lanes[3] = True
+            
+    def keyup(self, event): 
+        if event.key == pg.K_g:
+            self.active_lanes[0] = False
+        elif event.key == pg.K_h:
+            self.active_lanes[1] = False
+        elif event.key == pg.K_k:
+            self.active_lanes[2] = False
+        elif event.key == pg.K_l:
+            self.active_lanes[3] = False
+
   
     def _draw(self):
         self.screen.fill(C['bg'])
         now = self.now()
-        for i in range(4):  # assuming 4 lanes
-            x = i * (LANE_WIDTH + LANE_GAP) + 100  # starting X offset (adjust to your layout)
-            
-            pg.draw.rect(self.screen, (80, 80, 80), (x, LANE_Y, LANE_WIDTH, 50))
+        for i in range(4):
+            x = i * (LANE_WIDTH + LANE_GAP) + 100
+            color = (0, 150, 255) if self.active_lanes[i] else (80, 80, 80)
+            pg.draw.rect(self.screen, color, (x, LANE_Y, LANE_WIDTH, LANE_HEIGHT))
 
         for note in self.notes:
             if note.get_dt(now) > DRAW_TIME_OFFSET:

@@ -29,7 +29,6 @@ def main():
                 running = False
 
             elif event.type == SCENEEVENT:
-                print(f"Switching scene to: {event.scene_type}")
 
                 if event.scene_type == 'game':
                     scene = GameScene(screen)
@@ -37,6 +36,9 @@ def main():
 
                 elif event.scene_type == 'opts':
                     pass  
+                
+                elif event.type == pg.KEYUP:
+                    scene.keyup(event)
 
             elif event.type in scene.process:
                 scene.process[event.type](event)
