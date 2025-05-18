@@ -4,7 +4,7 @@ from config import *
 
 class Note:
 
-    img: pg.Surface = pg.Surface((50,50))
+    img: pg.Surface = pg.Surface((64,64))
     img.fill(pg.Color("white"))
     def __init__(self, timestamp: float, speed: float, screen_h: int):
         self.timestamp = timestamp
@@ -31,22 +31,22 @@ class Note:
     def hit(self, current_time: float) -> None: # muze treba vracet score
         """Handles hitting the note."""
         self.hit_note = True
+        self.score += 300
 
 class NoteLeft(Note):
     img: pg.Surface = pg.transform.rotate(Note.img.copy(), 90) # orotuju sipku
-    x: float = 100 # offset v ose x
+    x: float = get_lane_x(0)
 
 class NoteDown(Note):
     img: pg.Surface = pg.transform.rotate(Note.img.copy(), 180) 
-    x: float = 100 + (LANE_WIDTH + LANE_GAP)
-
+    x: float = get_lane_x(1)
 class NoteUp(Note):
     img: pg.Surface = pg.transform.rotate(Note.img.copy(), 0) 
-    x: float = 100 + (LANE_WIDTH + LANE_GAP) * 2
+    x: float = get_lane_x(2)
 
 class NoteRight(Note):
     img: pg.Surface = pg.transform.rotate(Note.img.copy(), -90) 
-    x: float = 100 + (LANE_WIDTH + LANE_GAP) * 3
+    x: float = get_lane_x(3)
 
 mapping: dict[int: Note] = {
             pg.K_g:NoteLeft, 
