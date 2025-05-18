@@ -4,7 +4,7 @@ from config import *
 
 class Note:
 
-    img: pg.Surface = pg.Surface((64,64))
+    img: pg.Surface = pg.Surface((LANE_WIDTH,LANE_HEIGHT))
     img.fill(pg.Color("white"))
     def __init__(self, timestamp: float, speed: float, screen_h: int):
         self.timestamp = timestamp
@@ -28,13 +28,13 @@ class Note:
         self.update_y(current_time)
         screen.blit(self.img, (self.x, self.y))
     
-    def hit(self, current_time: float) -> None: # muze treba vracet score
+    def hit(self, current_time: float) -> None: 
         """Handles hitting the note."""
         self.hit_note = True
-        self.score += 300
+        
 
 class NoteLeft(Note):
-    img: pg.Surface = pg.transform.rotate(Note.img.copy(), 90) # orotuju sipku
+    img: pg.Surface = pg.transform.rotate(Note.img.copy(), 90) 
     x: float = get_lane_x(0)
 
 class NoteDown(Note):
