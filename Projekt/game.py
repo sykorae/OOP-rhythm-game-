@@ -35,6 +35,7 @@ class GameScene(Scene):
             try: 
                 if isinstance(note, mapping[event.key]):
                     note.hit(current_time)
+                    self.score += 300
                     
                     
             except:

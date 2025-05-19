@@ -31,7 +31,6 @@ class Note:
     def hit(self, current_time: float) -> None: # muze treba vracet score
         """Handles hitting the note."""
         self.hit_note = True
-        self.score += 300
 
 class NoteLeft(Note):
     img: pg.Surface = pg.transform.rotate(Note.img.copy(), 90) # orotuju sipku
