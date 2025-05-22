@@ -6,6 +6,14 @@ from config import *
 from note import *
 from note_loader import create_notes
 
+#LM: again, use mapping when feasible
+key_to_lane = {
+            pg.K_g: 0,
+            pg.K_h: 1,
+            pg.K_k: 2,
+            pg.K_l: 3,
+            }
+
 class GameScene(Scene):
 
     def __init__(self, screen):
@@ -50,6 +58,10 @@ class GameScene(Scene):
                 self.active_lanes[3] = True
             
     def keyup(self, event): 
+        # LM: and use e.g. here:
+        if event.key in key_to_lane:
+            self.active_lanes[key_to_lane[event.key]] = False
+        return 
         if event.key == pg.K_g:
             self.active_lanes[0] = False
         elif event.key == pg.K_h:
@@ -58,6 +70,7 @@ class GameScene(Scene):
             self.active_lanes[2] = False
         elif event.key == pg.K_l:
             self.active_lanes[3] = False
+        
 
     def _draw(self):
         self.screen.fill(C['bg'])
