@@ -24,8 +24,8 @@ class GameScene(Scene):
     def start(self) -> None:
         self.start_time = time.time() 
         pg.mixer.music.load("Projekt/FireStarter.ogg")
-        pg.mixer.music.play()
         self.notes = create_notes("Projekt/FireStarter.sm")
+        pg.mixer.music.play() #LM: changing order
     
     def keydown(self, event) -> None:
         current_time = self.now()
