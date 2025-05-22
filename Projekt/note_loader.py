@@ -3,6 +3,12 @@ from note import NoteLeft, NoteRight, NoteUp, NoteDown, Note
 from config import *
 from parser import parse_sm_file
 
+column_to_notetype = {
+    0: NoteLeft,
+    1: NoteDown,
+    2: NoteUp,
+    3: NoteRight,
+}
 def create_notes(filename: str) -> list[Note]:
     sm_data = parse_sm_file("Projekt/FireStarter.sm")
     bpm = list(sm_data["bpms"].values())[0]
@@ -30,6 +36,11 @@ def create_notes(filename: str) -> list[Note]:
                         notes.append(NoteUp(timestamp, FALL_SPEED, SCREEN_H ))
                     if column == 3:
                         notes.append(NoteRight(timestamp, FALL_SPEED, SCREEN_H ))
+            # LM: Check this one.
+            
+            # for column, char in enumerate(line):
+            #     if char == "1":
+            #         notes.append(column_to_notetype[column](timestamp, FALL_SPEED, SCREEN_H))
         total_beats += 4
     return notes
     
